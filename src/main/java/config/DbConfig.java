@@ -20,8 +20,6 @@ public class  DbConfig {
 
 
    static  {
-        InputStream resourceAsStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("db.properties");
-       Properties properties = new Properties();
         try {
             initConfig();
         } catch (IOException e) {

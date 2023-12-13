@@ -22,7 +22,7 @@
 | :---: | :---: |
 <#list tables>
     <#items as t>
-        | [${t.tableName!''}](#${t.tableName!''}) | ${t.schem!''} |
+        | [${t.tableName!''}](#${t.tableName!''}) | ${t.tableSchem!''} |
     </#items>
 </#list>
 <#list tables><#items as t>

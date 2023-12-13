@@ -7,16 +7,18 @@ import java.util.List;
 
 @Data
 public class TableModel {
+
+    private String tableCat;
+    private String tableSchem;
     private String tableName;
-    private String schem;
+    private String tableType;
     private String remarks;
-    private List<ColumnModel> columns ;
+    private String typeCat;
+    private String typeSchem;
+    private String typeName;
+    private String selfReferencingColName;
+    private String refGeneration;
+    private List<ColumnModel> columns = new ArrayList<>() ;
 
 
-    public TableModel(String tableName, String schem,String remarks) {
-        this.tableName = tableName;
-        this.schem = schem;
-        this.remarks = remarks;
-        this.columns = new ArrayList<>();
-    }
 }
