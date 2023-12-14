@@ -6,6 +6,7 @@ import bean.TableModel;
 import cn.hutool.core.util.StrUtil;
 import constant.Const;
 
+import javax.sql.DataSource;
 import java.lang.reflect.Field;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
@@ -37,7 +38,7 @@ public class DbQuery {
         }
     }
 
-    public static DbModel tables(Connection connection) throws SQLException, NoSuchFieldException, IllegalAccessException {
+    public static DbModel tables(Connection connection) throws Exception {
         DatabaseMetaData metaData = connection.getMetaData();
         ResultSet resultSet =
                 metaData.getTables(connection.getCatalog(), connection.getSchema(), null, new String[]{"TABLE"});
@@ -60,5 +61,9 @@ public class DbQuery {
             cols(connection, dbModel, tableModel.getTableName());
         }
         return dbModel;
+    }
+
+    public static DbModel modelOf(DataSource dataSource) throws Exception {
+        return tables(dataSource.getConnection());
     }
 }

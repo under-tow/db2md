@@ -7,73 +7,57 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class ColumnModel {
-    @MdColumn("tableCat")
     private String tableCat;
 
-    @MdColumn("tableSchem")
     private String tableSchem;
 
-    @MdColumn("tableName")
     private String tableName;
 
-    @MdColumn("columnName")
+    @MdColumn(name = "columnName", index = 1)
     private String columnName;
 
-    @MdColumn("dataType")
+    @MdColumn(name = "dataType", index = 2)
     private String dataType;
 
-    @MdColumn("typeName")
+    @MdColumn(name = "typeName", index = 3)
     private String typeName;
 
-    @MdColumn("columnSize")
+    @MdColumn(name = "columnSize", index = 4)
     private String columnSize;
 
-    @MdColumn("decimalDigits")
     private String decimalDigits;
 
-    @MdColumn("numPrecRadix")
     private String numPrecRadix;
 
-    @MdColumn("nullable")
     private String nullable;
 
-    @MdColumn("remarks")
+    @MdColumn(name = "remarks", index = 7)
     private String remarks;
 
-    @MdColumn("columnDef")
+    @MdColumn(name = "columnDef", index = 6)
     private String columnDef;
 
-    @MdColumn("sqlDataType")
     private String sqlDataType;
 
-    @MdColumn("sqlDatetimeSub")
     private String sqlDatetimeSub;
 
-    @MdColumn("charOctetLength")
     private String charOctetLength;
 
-    @MdColumn("ordinalPosition")
     private String ordinalPosition;
 
-    @MdColumn("isNullable")
+    @MdColumn(name = "isNullable", index = 5)
     private String isNullable;
 
-    @MdColumn("scopeCatalog")
     private String scopeCatalog;
 
-    @MdColumn("scopeSchema")
     private String scopeSchema;
 
-    @MdColumn("scopeTable")
     private String scopeTable;
 
-    @MdColumn("sourceDataType")
     private String sourceDataType;
 
-    @MdColumn("isAutoincrement")
     private String isAutoincrement;
 
-    @MdColumn("isGeneratedcolumn")
     private String isGeneratedcolumn;
 }
 

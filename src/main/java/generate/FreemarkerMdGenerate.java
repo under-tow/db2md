@@ -1,7 +1,7 @@
 package generate;
 
 import bean.DbModel;
-import config.DataSource;
+import config.DataSourceFactory;
 import config.DbQuery;
 import freemarker.cache.ClassTemplateLoader;
 import freemarker.template.Configuration;
@@ -29,7 +29,7 @@ public class FreemarkerMdGenerate implements MdGenerate {
     @Override
     public void generate() throws Exception {
 
-        DbModel data = DbQuery.tables(DataSource.getConnection());
+        DbModel data = DbQuery.modelOf(DataSourceFactory.getDataSource());
         Template template = configuration.getTemplate("md.ftl");
         // TODO 系统相对目录
         File file = new File("D:\\project\\db2md\\src\\main\\resources\\out.md");

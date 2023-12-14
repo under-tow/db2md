@@ -8,36 +8,29 @@ import java.util.List;
 
 @Data
 public class TableModel {
-    @MdColumn("tableCat")
     private String tableCat;
 
-    @MdColumn("tableSchem")
+    @MdColumn(name = "tableSchem", index = 1)
     private String tableSchem;
 
-    @MdColumn("tableName")
+    @MdColumn(name = "tableName", index = 2)
     private String tableName;
 
-    @MdColumn("tableType")
     private String tableType;
 
-    @MdColumn("remarks")
+    @MdColumn(name = "remarks", index = 3)
     private String remarks;
 
-    @MdColumn("typeCat")
     private String typeCat;
 
-    @MdColumn("typeSchem")
     private String typeSchem;
 
-    @MdColumn("typeName")
     private String typeName;
 
-    @MdColumn("selfReferencingColName")
     private String selfReferencingColName;
 
-    @MdColumn("refGeneration")
     private String refGeneration;
-    private List<ColumnModel> columns = new ArrayList<>() ;
+    private List<ColumnModel> columns = new ArrayList<>();
 
 
 }
