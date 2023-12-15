@@ -17,34 +17,45 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 -->
+
+
+
+
 ## 所有表
 
-|<#list tiHeader><#items as o>${o.columnName!''}|</#items></#list>
-|<#list tiHeader> <#items as o>---|</#items></#list>
-<#list tiContent>
-    <#items as tic>
+<#list x>
+    <#items as info>
+
+|<#list info.tiHeader><#items as o>${o.columnName!''}|</#items></#list>
+|<#list info.tiHeader> <#items as o>---|</#items></#list>
+    <#list info.tiContent>
+        <#items as tic>
 |<#list tic><#items as o>${o!''}|</#items></#list>
+        </#items>
+    </#list>
+
     </#items>
 </#list>
+
+
 
 ## 表结构
 
-|<#list tdHeader><#items as o>${o.columnName!''}|</#items></#list>
-|<#list tdHeader> <#items as o>---|</#items></#list>
-<#list tdContent>
-    <#items as tdc>
-        |<#list tdc><#items as o>${o!''}|</#items></#list>
+<#list x>
+    <#items as info>
+
+###
+|<#list info.tdHeader><#items as o>${o.columnName!''}|</#items></#list>
+|<#list info.tdHeader> <#items as o>---|</#items></#list>
+        <#list info.tdContent>
+            <#items as tdc>
+|<#list tdc><#items as o>${o!''}|</#items></#list>
+            </#items>
+        </#list>
+
     </#items>
 </#list>
 
 
-<#list tdContent>
-    <#items as tdc>
-        |<#list tdc><#items as o>${o!''}|</#items></#list>
-    </#items>
-</#list>
-
-[
 
 
-]
