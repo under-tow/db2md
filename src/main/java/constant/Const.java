@@ -8,6 +8,7 @@ public class Const {
     public static final String FOUR_LEVEL_TITLE = "####";
     public static final String TABLE_CONTENT_SEPARATOR = "|";
     public static final String TABLE_HEAD_HOLDER = "----";
+    public static final String LINE_SEPARATOR = System.lineSeparator();
 
     public static final HashSet<String> tableFieldSet = new HashSet<>();
     public static final HashSet<String> columnFieldSet = new HashSet<>();
