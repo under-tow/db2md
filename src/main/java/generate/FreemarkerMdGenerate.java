@@ -27,14 +27,14 @@ public class FreemarkerMdGenerate implements MdGenerate {
 
 
     @Override
-    public void generate() throws Exception {
+    public void generate(Object obj) throws Exception {
 
-        DbModel data = DbQuery.modelOf(DataSourceFactory.getDataSource());
-        Template template = configuration.getTemplate("md.ftl");
+        DbModel data = DbQuery.queryModel(DataSourceFactory.getDataSource());
+        Template template = configuration.getTemplate("md2.ftl");
         // TODO 系统相对目录
-        File file = new File("D:\\project\\db2md\\src\\main\\resources\\out.md");
+        File file = new File("D:\\project\\db2md\\src\\main\\resources\\out2.md");
         Writer out = new BufferedWriter(
                 new OutputStreamWriter(new FileOutputStream(file), "utf-8"));
-        template.process(data, out);
+        template.process(obj, out);
     }
 }

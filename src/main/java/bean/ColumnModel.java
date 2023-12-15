@@ -13,16 +13,15 @@ public class ColumnModel {
 
     private String tableName;
 
-    @MdColumn(name = "columnName", index = 1)
+    @MdColumn(name = "名称", sort = 1)
     private String columnName;
 
-    @MdColumn(name = "dataType", index = 2)
     private String dataType;
 
-    @MdColumn(name = "typeName", index = 3)
+    @MdColumn(name = "数据类型", sort = 3)
     private String typeName;
 
-    @MdColumn(name = "columnSize", index = 4)
+    @MdColumn(name = "列大小", sort = 4)
     private String columnSize;
 
     private String decimalDigits;
@@ -31,10 +30,10 @@ public class ColumnModel {
 
     private String nullable;
 
-    @MdColumn(name = "remarks", index = 7)
+    @MdColumn(name = "备注", sort = 7)
     private String remarks;
 
-    @MdColumn(name = "columnDef", index = 6)
+    @MdColumn(name = "默认值", sort = 6)
     private String columnDef;
 
     private String sqlDataType;
@@ -45,7 +44,7 @@ public class ColumnModel {
 
     private String ordinalPosition;
 
-    @MdColumn(name = "isNullable", index = 5)
+    @MdColumn(name = "允许空值", sort = 5)
     private String isNullable;
 
     private String scopeCatalog;

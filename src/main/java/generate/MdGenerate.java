@@ -1,5 +1,5 @@
 package generate;
 
 public interface MdGenerate {
-    void generate() throws Exception;
+    void generate(Object obj) throws Exception;
 }

@@ -3,3 +3,7 @@
 2. 执行Run类的main
 
 完善中...
+
+TODO
+1. 引入starter，然后创建注解类即可
+2. 引入starter，然后写配置文件即可

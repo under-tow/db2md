@@ -63,7 +63,7 @@ public class DbQuery {
         return dbModel;
     }
 
-    public static DbModel modelOf(DataSource dataSource) throws Exception {
+    public static DbModel queryModel(DataSource dataSource) throws Exception {
         return tables(dataSource.getConnection());
     }
 }

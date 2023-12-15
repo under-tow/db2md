@@ -10,15 +10,15 @@ import java.util.List;
 public class TableModel {
     private String tableCat;
 
-    @MdColumn(name = "tableSchem", index = 1)
+    @MdColumn(name = "模式", sort = 1)
     private String tableSchem;
 
-    @MdColumn(name = "tableName", index = 2)
+    @MdColumn(name = "表名", sort = 2)
     private String tableName;
 
     private String tableType;
 
-    @MdColumn(name = "remarks", index = 3)
+    @MdColumn(name = "说明", sort = 3)
     private String remarks;
 
     private String typeCat;
