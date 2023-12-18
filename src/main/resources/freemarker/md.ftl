@@ -7,8 +7,7 @@
 </#list>
 <#list tables><#items as t>
 
-**表名：** <a id="${t.tableName!''}">${t.tableName!''}</a>
-
+${t.tableName!''}
 
 <#list t.columns>
 | 序号 | 名称 | 数据类型 | 列大小 | 允许空值  |  默认值 |   说明 |

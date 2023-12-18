@@ -1,4 +1,4 @@
-package bean;
+package model.md;
 
 import config.MdColumn;
 import lombok.Data;

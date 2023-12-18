@@ -1,6 +1,7 @@
-package bean;
+package model;
 
 import lombok.Data;
+import model.md.TableModel;
 
 import java.util.ArrayList;
 import java.util.List;

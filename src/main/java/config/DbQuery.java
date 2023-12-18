@@ -1,8 +1,8 @@
 package config;
 
-import bean.ColumnModel;
-import bean.DbModel;
-import bean.TableModel;
+import model.md.ColumnModel;
+import model.DbModel;
+import model.md.TableModel;
 import cn.hutool.core.util.StrUtil;
 
 import javax.sql.DataSource;
@@ -12,6 +12,10 @@ import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+
+/**
+ * 根据数据库连接读取表结构
+ */
 public class DbQuery {
 
     public static DbModel queryModel(DataSource dataSource) throws Exception {

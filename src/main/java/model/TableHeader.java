@@ -1,4 +1,4 @@
-package bean;
+package model;
 
 import lombok.Data;
 

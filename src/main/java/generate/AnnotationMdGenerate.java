@@ -1,12 +1,14 @@
 package generate;
 
-import bean.*;
+import model.*;
 import cn.hutool.core.annotation.AnnotationUtil;
 import cn.hutool.core.collection.CollUtil;
-import config.DataSourceFactory;
+import config.DbConfig;
 import config.DbQuery;
 import config.MdColumn;
 import constant.Const;
+import model.md.ColumnModel;
+import model.md.TableModel;
 
 import java.io.FileWriter;
 import java.lang.reflect.Field;
@@ -14,12 +16,15 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 
+/**
+ * 通过 TableModel\ColumnModel 中注解配置的列，来生成markdown文件
+ */
 public class AnnotationMdGenerate implements MdGenerate {
 
 
     @Override
-    public void generate(Object obj) throws Exception {
-        DbModel dbModel = DbQuery.queryModel(DataSourceFactory.getDataSource());
+    public void generate() throws Exception {
+        DbModel dbModel = DbQuery.queryModel(DbConfig.getDataSource());
 
         List<TableHeader> tableHeaders = getMdColumns(TableModel.class);
         List<TableHeader> columnHeaders = getMdColumns(ColumnModel.class);

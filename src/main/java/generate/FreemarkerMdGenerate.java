@@ -1,7 +1,7 @@
 package generate;
 
-import bean.DbModel;
-import config.DataSourceFactory;
+import model.DbModel;
+import config.DbConfig;
 import config.DbQuery;
 import constant.Const;
 import freemarker.cache.ClassTemplateLoader;
@@ -11,6 +11,10 @@ import freemarker.template.Template;
 import java.io.*;
 import java.util.Locale;
 
+
+/**
+ * 通过 /freemarker/md.ftl配置的列，来生成markdown文件
+ */
 public class FreemarkerMdGenerate implements MdGenerate {
 
 
@@ -24,8 +28,8 @@ public class FreemarkerMdGenerate implements MdGenerate {
 
 
     @Override
-    public void generate(Object obj) throws Exception {
-        DbModel data = DbQuery.queryModel(DataSourceFactory.getDataSource());
+    public void generate() throws Exception {
+        DbModel data = DbQuery.queryModel(DbConfig.getDataSource());
         Template template = configuration.getTemplate(Const.TEMPLATE_FTL);
         File file = new File(Const.OUTPUT_FILE);
         Writer out = new BufferedWriter( new OutputStreamWriter(new FileOutputStream(file), Const.UTF8));
