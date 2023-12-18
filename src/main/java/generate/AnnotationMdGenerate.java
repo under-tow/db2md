@@ -13,13 +13,7 @@ import java.lang.reflect.Field;
 import java.util.*;
 import java.util.stream.Collectors;
 
-/**
- * 1. 判断tablemodel\columnmodel 类上各个字段是否有md注解
- * 2. 有注解则拿对应的、val\sort,并从dbmodel那字段
- * 3. 如何写md文件
- * <p>
- * 4. 因为包含注解的个数、以及注解的内容是动态的，所以必须在新的实体类来实现对应md2.ftl
- */
+
 public class AnnotationMdGenerate implements MdGenerate {
 
 
@@ -27,14 +21,12 @@ public class AnnotationMdGenerate implements MdGenerate {
     public void generate(Object obj) throws Exception {
         DbModel dbModel = DbQuery.queryModel(DataSourceFactory.getDataSource());
 
-        // 表头
         List<TableHeader> tableHeaders = getMdColumns(TableModel.class);
         List<TableHeader> columnHeaders = getMdColumns(ColumnModel.class);
 
         List<TableModel> tables = dbModel.getTables();
 
         StringBuilder res = new StringBuilder();
-        // 表信息
         List<String> tTitle = tableHeaders.stream().map(TableHeader::getColumnName).collect(Collectors.toList());
         res.append(arrToMdTableLine(tTitle));
         res.append(arrToMdTableConnectLine(tTitle.size()));
@@ -51,7 +43,7 @@ public class AnnotationMdGenerate implements MdGenerate {
         List<String> cTitle = columnHeaders.stream().map(TableHeader::getColumnName).collect(Collectors.toList());
 
         for (TableModel t : tables) {
-            res.append(Const.FOUR_LEVEL_TITLE + t.getTableName() + Const.LINE_SEPARATOR);
+            res.append(Const.FOUR_LEVEL_TITLE).append(t.getTableName()).append(Const.LINE_SEPARATOR);
             res.append(arrToMdTableLine(cTitle));
             res.append(arrToMdTableConnectLine(cTitle.size()));
             for (ColumnModel c : t.getColumns()) {
@@ -88,7 +80,6 @@ public class AnnotationMdGenerate implements MdGenerate {
         rows.sort((Comparator.comparingInt(TableHeader::getSort)));
         return rows;
     }
-
 
 
     public static Object invokeField(Class<?> clazz,String fieldName, Object obj) throws NoSuchFieldException, IllegalAccessException {

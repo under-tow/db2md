@@ -4,51 +4,15 @@ import java.util.HashSet;
 
 public class Const {
 
-    public static final String THREE_LEVEL_TITLE = "###";
+    public static final String UTF8 = "utf-8";
+    public static final String ZH_CN = "zh_CN";
+    public static final String TEMPLATE_FTL = "md.ftl";
+    public static final String TEMPLATE_DIR = "/freemarker/";
     public static final String FOUR_LEVEL_TITLE = "####";
     public static final String TABLE_CONTENT_SEPARATOR = "|";
     public static final String TABLE_HEAD_HOLDER = "----";
     public static final String LINE_SEPARATOR = System.lineSeparator();
     public static final String OUTPUT_FILE = System.getProperty("user.dir") + "\\md\\datasource.md";
-    public static final HashSet<String> tableFieldSet = new HashSet<>();
-    public static final HashSet<String> columnFieldSet = new HashSet<>();
-
-    static {
-        tableFieldSet.add("TABLE_CAT");
-        tableFieldSet.add("TABLE_SCHEM");
-        tableFieldSet.add("TABLE_NAME");
-        tableFieldSet.add("TABLE_TYPE");
-        tableFieldSet.add("REMARKS");
-        tableFieldSet.add("TYPE_CAT");
-        tableFieldSet.add("TYPE_SCHEM");
-        tableFieldSet.add("TYPE_NAME");
-        tableFieldSet.add("SELF_REFERENCING_COL_NAME");
-        tableFieldSet.add("REF_GENERATION");
-
-        columnFieldSet.add("TABLE_CAT");
-        columnFieldSet.add("TABLE_SCHEM");
-        columnFieldSet.add("TABLE_NAME");
-        columnFieldSet.add("COLUMN_NAME");
-        columnFieldSet.add("DATA_TYPE");
-        columnFieldSet.add("TYPE_NAME");
-        columnFieldSet.add("COLUMN_SIZE");
-        columnFieldSet.add("DECIMAL_DIGITS");
-        columnFieldSet.add("NUM_PREC_RADIX");
-        columnFieldSet.add("NULLABLE");
-        columnFieldSet.add("REMARKS");
-        columnFieldSet.add("COLUMN_DEF");
-        columnFieldSet.add("SQL_DATA_TYPE");
-        columnFieldSet.add("SQL_DATETIME_SUB");
-        columnFieldSet.add("CHAR_OCTET_LENGTH");
-        columnFieldSet.add("ORDINAL_POSITION");
-        columnFieldSet.add("IS_NULLABLE");
-        columnFieldSet.add("SCOPE_CATALOG");
-        columnFieldSet.add("SCOPE_SCHEMA");
-        columnFieldSet.add("SCOPE_TABLE");
-        columnFieldSet.add("SOURCE_DATA_TYPE");
-        columnFieldSet.add("IS_AUTOINCREMENT");
-        columnFieldSet.add("IS_GENERATEDCOLUMN");
-    }
 }
 
 

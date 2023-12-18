@@ -34,7 +34,6 @@ public class  DbConfig {
         return properties;
     }
 
-    // TODO 支持手动入参
     private static void initConfig() throws IOException {
         instance.properties = loadProperties();
         instance.url = instance.properties.getProperty("url");
