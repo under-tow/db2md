@@ -7,7 +7,7 @@ public class Run {
 
     public static void main(String[] args) throws Exception {
 
-        MdGenerate mdGenerate = new AnnotationMdGenerate();
+        MdGenerate mdGenerate = new FreemarkerMdGenerate();
 //        MdGenerate mdGenerate = new AnnotationMdGenerate();
         mdGenerate.generate(null);
 

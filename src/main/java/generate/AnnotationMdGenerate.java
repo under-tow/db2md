@@ -25,28 +25,6 @@ public class AnnotationMdGenerate implements MdGenerate {
 
     @Override
     public void generate(Object obj) throws Exception {
-
-
-    }
-
-    public static List<TableHeader> getMdColumns(Class<?> clazz) {
-        List<TableHeader> rows = new ArrayList<>();
-        Field[] fields = clazz.getDeclaredFields();
-        for (Field field : fields) {
-            MdColumn annotation;
-            if ((annotation = AnnotationUtil.getAnnotation(field, MdColumn.class)) != null) {
-                TableHeader row = new TableHeader();
-                row.setFiledName(field.getName());
-                row.setColumnName(annotation.name());
-                row.setSort(annotation.sort());
-                rows.add(row);
-            }
-        }
-        rows.sort((Comparator.comparingInt(TableHeader::getSort)));
-        return rows;
-    }
-
-    public static void main(String[] args) throws Exception {
         DbModel dbModel = DbQuery.queryModel(DataSourceFactory.getDataSource());
 
         // 表头
@@ -73,7 +51,7 @@ public class AnnotationMdGenerate implements MdGenerate {
         List<String> cTitle = columnHeaders.stream().map(TableHeader::getColumnName).collect(Collectors.toList());
 
         for (TableModel t : tables) {
-            res.append("#### " + t.getTableName() + Const.LINE_SEPARATOR);
+            res.append(Const.FOUR_LEVEL_TITLE + t.getTableName() + Const.LINE_SEPARATOR);
             res.append(arrToMdTableLine(cTitle));
             res.append(arrToMdTableConnectLine(cTitle.size()));
             for (ColumnModel c : t.getColumns()) {
@@ -87,18 +65,31 @@ public class AnnotationMdGenerate implements MdGenerate {
             res.append(Const.LINE_SEPARATOR);
         }
 
-
-        FileWriter writer = new FileWriter("D:\\project\\db2md\\src\\main\\resources\\out3.md");
+        FileWriter writer = new FileWriter(Const.OUTPUT_FILE);
         writer.write(res.toString());
         writer.flush();
         writer.close();
-        // 表的字段信息展示
-//        for (TableHeader ch : columnHeaders) {
-//
-//        }
-//
-//        System.out.println();
+
     }
+
+    public static List<TableHeader> getMdColumns(Class<?> clazz) {
+        List<TableHeader> rows = new ArrayList<>();
+        Field[] fields = clazz.getDeclaredFields();
+        for (Field field : fields) {
+            MdColumn annotation;
+            if ((annotation = AnnotationUtil.getAnnotation(field, MdColumn.class)) != null) {
+                TableHeader row = new TableHeader();
+                row.setFiledName(field.getName());
+                row.setColumnName(annotation.name());
+                row.setSort(annotation.sort());
+                rows.add(row);
+            }
+        }
+        rows.sort((Comparator.comparingInt(TableHeader::getSort)));
+        return rows;
+    }
+
+
 
     public static Object invokeField(Class<?> clazz,String fieldName, Object obj) throws NoSuchFieldException, IllegalAccessException {
         Field field = clazz.getDeclaredField(fieldName);

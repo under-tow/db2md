@@ -3,6 +3,7 @@ package generate;
 import bean.DbModel;
 import config.DataSourceFactory;
 import config.DbQuery;
+import constant.Const;
 import freemarker.cache.ClassTemplateLoader;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
@@ -13,15 +14,11 @@ import java.util.Locale;
 public class FreemarkerMdGenerate implements MdGenerate {
 
 
-    private final Configuration configuration = new Configuration(
-            Configuration.DEFAULT_INCOMPATIBLE_IMPROVEMENTS);
+    private final Configuration configuration = new Configuration(Configuration.DEFAULT_INCOMPATIBLE_IMPROVEMENTS);
 
     {
-        configuration.setTemplateLoader(
-                new ClassTemplateLoader(this.getClass(), "/freemarker/"));
-        //编码
+        configuration.setTemplateLoader(new ClassTemplateLoader(this.getClass(), "/freemarker/"));
         configuration.setDefaultEncoding("UTF-8");
-        //国际化
         configuration.setLocale(new Locale("zh_CN"));
     }
 
@@ -30,11 +27,14 @@ public class FreemarkerMdGenerate implements MdGenerate {
     public void generate(Object obj) throws Exception {
 
         DbModel data = DbQuery.queryModel(DataSourceFactory.getDataSource());
-        Template template = configuration.getTemplate("md2.ftl");
-        // TODO 系统相对目录
-        File file = new File("D:\\project\\db2md\\src\\main\\resources\\out2.md");
+        Template template = configuration.getTemplate("md.ftl");
+        System.out.println("Const.OUTPUT_FILE = " + Const.OUTPUT_FILE);
+        File file = new File(Const.OUTPUT_FILE);
+        file.createNewFile();
         Writer out = new BufferedWriter(
                 new OutputStreamWriter(new FileOutputStream(file), "utf-8"));
-        template.process(obj, out);
+        template.process(data, out);
     }
+
+
 }
