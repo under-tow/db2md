@@ -13,12 +13,11 @@ public class DbConfig {
   // TODO 加载不同驱动、或者都加载scope设置为provided ; dbConfig.getJdbc();
 
   public static DataSource getDataSource() {
-      DbProperties dbProperties = DbProperties.getInstance();
-
+      DbProperties prop = DbProperties.getInstance();
       HikariConfig hikariConfig = new HikariConfig();
-      hikariConfig.setJdbcUrl(dbProperties.getUrl());
-      hikariConfig.setUsername(dbProperties.getUsername());
-      hikariConfig.setPassword(dbProperties.getPassword());
+      hikariConfig.setJdbcUrl(prop.getUrl());
+      hikariConfig.setUsername(prop.getUsername());
+      hikariConfig.setPassword(prop.getPassword());
       return new HikariDataSource(hikariConfig);
   }
 
