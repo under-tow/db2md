@@ -18,7 +18,7 @@ public class Const {
     public static final String TEMPLATE_DIR = "/freemarker/";
 
     /** 4级标题 **/
-    public static final String FOUR_LEVEL_TITLE = "####";
+    public static final String FOUR_LEVEL_TITLE = "#### ";
 
     public static final String TABLE_CONTENT_SEPARATOR = "|";
 
