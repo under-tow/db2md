@@ -9,6 +9,7 @@ import freemarker.template.Configuration;
 import freemarker.template.Template;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.Locale;
 
 
@@ -32,7 +33,7 @@ public class FreemarkerMdGenerate implements MdGenerate {
         DbModel data = DbQuery.queryModel(DbConfig.getDataSource());
         Template template = configuration.getTemplate(Const.TEMPLATE_FTL);
         File file = new File(Const.OUTPUT_FILE);
-        Writer out = new BufferedWriter( new OutputStreamWriter(new FileOutputStream(file), Const.UTF8));
+        Writer out = new BufferedWriter( new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8));
         template.process(data, out);
     }
 
