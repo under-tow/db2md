@@ -10,14 +10,14 @@
 
 1. 下载代码
 2. 填写数据库信息:`src/main/resources/db.properties`
-3. 执行`src/main/java/Run.java`类的`main`方法。以默认配置导出到`md/datasource.md`文件
+3. 执行`src/main/java/cn.under2.MdUtil.java`类的`main`方法。以默认配置导出到`md/datasource.md`文件
 
 ### 2 如何自定义
 
 > 本项目支持自定义导出的列和顺序。修改注解信息即可
 
-- src/main/java/model/md/TableModel 表展示配置
-- src/main/java/model/md/ColumnModel 表字段展示配置
+- src/main/java/cn.under2.model/md/TableModel 表展示配置
+- src/main/java/cn.under2.model/md/ColumnModel 表字段展示配置
 
 ### 3 导出样例
 

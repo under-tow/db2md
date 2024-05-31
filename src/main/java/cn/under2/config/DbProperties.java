@@ -1,4 +1,4 @@
-package config;
+package cn.under2.config;
 
 import lombok.Data;
 

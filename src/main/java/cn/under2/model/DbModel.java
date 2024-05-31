@@ -1,7 +1,7 @@
-package model;
+package cn.under2.model;
 
 import lombok.Data;
-import model.md.TableModel;
+import cn.under2.model.md.TableModel;
 
 import java.util.ArrayList;
 import java.util.List;

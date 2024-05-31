@@ -1,6 +1,6 @@
-package model.md;
+package cn.under2.model.md;
 
-import config.MdColumn;
+import cn.under2.config.MdColumn;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -16,9 +16,9 @@ public class ColumnModel {
     @MdColumn(name = "名称", sort = 1)
     private String columnName;
 
-    @MdColumn(name = "数据类型", sort = 3)
     private String dataType;
 
+    @MdColumn(name = "数据类型", sort = 3)
     private String typeName;
 
     @MdColumn(name = "列大小", sort = 4)

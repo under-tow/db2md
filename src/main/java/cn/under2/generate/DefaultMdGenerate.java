@@ -1,15 +1,14 @@
-package generate;
+package cn.under2.generate;
 
-import model.*;
-import cn.hutool.core.annotation.AnnotationUtil;
+import cn.under2.model.*;
 import cn.hutool.core.collection.CollUtil;
-import config.DbConfig;
-import config.DbQuery;
-import config.MdColumn;
-import constant.Const;
-import model.md.ColumnModel;
-import model.md.TableModel;
+import cn.under2.config.DbConfig;
+import cn.under2.config.DbQuery;
+import cn.under2.constant.Const;
+import cn.under2.model.md.ColumnModel;
+import cn.under2.model.md.TableModel;
 
+import javax.sql.DataSource;
 import java.io.FileWriter;
 import java.lang.reflect.Field;
 import java.util.*;
@@ -17,35 +16,39 @@ import java.util.stream.Collectors;
 
 
 /**
- * 通过 TableModel\ColumnModel 中注解配置的列，来生成markdown文件
+ * 生成markdown文件
  */
-public class AnnotationMdGenerate implements MdGenerate {
+public class DefaultMdGenerate implements MdGenerate {
 
 
     @Override
-    public void generate() throws Exception {
-        DbModel dbModel = DbQuery.queryModel(DbConfig.getDataSource());
+    public void generate(DbSourceConfig config) throws Exception {
+        generate(config, MdColumnConfig.DEFAULT_TABLE_CONFIG, MdColumnConfig.DEFAULT_COLUMN_CONFIG);
 
-        List<TableHeader> tableHeaders = getMdColumns(TableModel.class);
-        List<TableHeader> columnHeaders = getMdColumns(ColumnModel.class);
+    }
+
+    @Override
+    public void generate(DbSourceConfig config, List<MdColumnItem> tableConfig, List<MdColumnItem> tableColumnConfig) throws Exception {
+        DataSource dataSource = DbConfig.customDataSource(config);
+        DbModel dbModel = DbQuery.queryModel(dataSource);
 
         List<TableModel> tables = dbModel.getTables();
 
         StringBuilder res = new StringBuilder();
-        List<String> tTitle = tableHeaders.stream().map(TableHeader::getColumnName).collect(Collectors.toList());
+        List<String> tTitle = tableConfig.stream().map(MdColumnItem::getMdColumn).collect(Collectors.toList());
         res.append(arrToMdTableLine(tTitle));
         res.append(arrToMdTableConnectLine(tTitle.size()));
 
         for (TableModel t : tables) {
             List<String> temp = new ArrayList<>();
-            for (TableHeader th : tableHeaders) {
-                Object o = invokeField(TableModel.class,th.getFiledName(), t);
+            for (MdColumnItem th : tableConfig) {
+                Object o = invokeField(TableModel.class, th.getDbColumn(), t);
                 temp.add(nullToBlank(o));
             }
             res.append(arrToMdTableLine(temp));
         }
 
-        List<String> cTitle = columnHeaders.stream().map(TableHeader::getColumnName).collect(Collectors.toList());
+        List<String> cTitle = tableColumnConfig.stream().map(MdColumnItem::getMdColumn).collect(Collectors.toList());
 
         for (TableModel t : tables) {
             res.append(Const.FOUR_LEVEL_TITLE).append(t.getTableName()).append(Const.LINE_SEPARATOR);
@@ -53,8 +56,8 @@ public class AnnotationMdGenerate implements MdGenerate {
             res.append(arrToMdTableConnectLine(cTitle.size()));
             for (ColumnModel c : t.getColumns()) {
                 List<String> temp = new ArrayList<>();
-                for (TableHeader th : columnHeaders) {
-                    Object o = invokeField(ColumnModel.class,th.getFiledName(), c);
+                for (MdColumnItem th : tableColumnConfig) {
+                    Object o = invokeField(ColumnModel.class, th.getDbColumn(), c);
                     temp.add(nullToBlank(o));
                 }
                 res.append(arrToMdTableLine(temp));
@@ -66,28 +69,15 @@ public class AnnotationMdGenerate implements MdGenerate {
         writer.write(res.toString());
         writer.flush();
         writer.close();
+    }
+
+    @Override
+    public void generate(DbSourceConfig config, List<MdColumnItem> tableColumnConfig) throws Exception {
+        generate(config, MdColumnConfig.DEFAULT_COLUMN_CONFIG);
 
     }
 
-    public static List<TableHeader> getMdColumns(Class<?> clazz) {
-        List<TableHeader> rows = new ArrayList<>();
-        Field[] fields = clazz.getDeclaredFields();
-        for (Field field : fields) {
-            MdColumn annotation;
-            if ((annotation = AnnotationUtil.getAnnotation(field, MdColumn.class)) != null) {
-                TableHeader row = new TableHeader();
-                row.setFiledName(field.getName());
-                row.setColumnName(annotation.name());
-                row.setSort(annotation.sort());
-                rows.add(row);
-            }
-        }
-        rows.sort((Comparator.comparingInt(TableHeader::getSort)));
-        return rows;
-    }
-
-
-    public static Object invokeField(Class<?> clazz,String fieldName, Object obj) throws NoSuchFieldException, IllegalAccessException {
+    public static Object invokeField(Class<?> clazz, String fieldName, Object obj) throws NoSuchFieldException, IllegalAccessException {
         Field field = clazz.getDeclaredField(fieldName);
         field.setAccessible(true);
         return field.get(obj);

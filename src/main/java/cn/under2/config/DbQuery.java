@@ -1,8 +1,8 @@
-package config;
+package cn.under2.config;
 
-import model.md.ColumnModel;
-import model.DbModel;
-import model.md.TableModel;
+import cn.under2.model.md.ColumnModel;
+import cn.under2.model.DbModel;
+import cn.under2.model.md.TableModel;
 import cn.hutool.core.util.StrUtil;
 
 import javax.sql.DataSource;
