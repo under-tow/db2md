@@ -8,9 +8,10 @@ public class UnitTest {
 
     @Test
     public void testGenerate() throws Exception {
-        DbSourceConfig sourceConfig = new DbSourceConfig.Builder()
-                .url("jdbc:postgresql://172.18.1.54:5432/dw_pro_dev")
+        DbSourceConfig sourceConfig = DbSourceConfig.builder()
+                .jdbcUrl("jdbc:postgresql://ip:5432/x")
                 .password("123456")
+                .driverClassName("org.postgresql.Driver")
                 .username("postgres").build();
         MdUtil.db2md(sourceConfig);
     }
