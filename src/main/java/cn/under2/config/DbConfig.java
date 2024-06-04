@@ -12,9 +12,10 @@ public class DbConfig {
 
   public static DataSource customDataSource(DbSourceConfig config) {
       HikariConfig hikariConfig = new HikariConfig();
-      hikariConfig.setJdbcUrl(config.getUrl());
+      hikariConfig.setJdbcUrl(config.getJdbcUrl());
       hikariConfig.setUsername(config.getUsername());
       hikariConfig.setPassword(config.getPassword());
+      hikariConfig.setDriverClassName(config.getDriverClassName());
       return new HikariDataSource(hikariConfig);
   }
 

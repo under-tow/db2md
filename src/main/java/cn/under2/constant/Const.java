@@ -28,7 +28,7 @@ public class Const {
     public static final String LINE_SEPARATOR = System.lineSeparator();
 
     /** 生成的markdown文件位置 **/
-    public static final String OUTPUT_FILE = System.getProperty("user.dir") + "\\md\\datasource.md";
+    public static final String OUTPUT_FILE = System.getProperty("user.dir") + "\\datasource.md";
 }
 
 
