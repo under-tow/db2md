@@ -7,7 +7,7 @@
 工具地址：[https://github.com/under-tow/db2md](https://github.com/under-tow/db2md)
 
 ### 1 如何使用
-
+(重构中，准备以工具包的方式呈现)
 1. 下载代码
 2. 填写数据库信息:`src/main/resources/db.properties`
 3. 执行`src/main/java/cn.under2.MdUtil.java`类的`main`方法。以默认配置导出到`md/datasource.md`文件
