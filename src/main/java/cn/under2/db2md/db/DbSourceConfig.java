@@ -1,4 +1,4 @@
-package cn.under2.db2md.model;
+package cn.under2.db2md.db;
 
 import lombok.Builder;
 import lombok.Getter;

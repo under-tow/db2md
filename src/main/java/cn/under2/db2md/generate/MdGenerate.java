@@ -1,7 +1,6 @@
 package cn.under2.db2md.generate;
 
-import cn.under2.db2md.model.DbSourceConfig;
-import cn.under2.db2md.model.MdColumnItem;
+import cn.under2.db2md.db.DbSourceConfig;
 
 import java.util.List;
 

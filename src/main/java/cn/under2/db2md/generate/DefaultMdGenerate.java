@@ -2,15 +2,13 @@ package cn.under2.db2md.generate;
 
 import cn.hutool.core.util.StrUtil;
 import cn.under2.db2md.model.DbModel;
-import cn.under2.db2md.model.DbSourceConfig;
-import cn.under2.db2md.model.MdColumnConfig;
-import cn.under2.db2md.model.MdColumnItem;
+import cn.under2.db2md.db.DbSourceConfig;
 import cn.hutool.core.collection.CollUtil;
-import cn.under2.db2md.config.CustomDataSource;
-import cn.under2.db2md.config.DbQuery;
+import cn.under2.db2md.db.CustomDataSource;
+import cn.under2.db2md.db.DbQuery;
 import cn.under2.db2md.constant.MarkdownConst;
-import cn.under2.db2md.model.md.ColumnModel;
-import cn.under2.db2md.model.md.TableModel;
+import cn.under2.db2md.model.ColumnModel;
+import cn.under2.db2md.model.TableModel;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -29,7 +27,7 @@ public class DefaultMdGenerate implements MdGenerate {
 
     @Override
     public void generate(DbSourceConfig config) throws Exception {
-        generate(config, MdColumnConfig.DEFAULT_TABLE_CONFIG, MdColumnConfig.DEFAULT_COLUMN_CONFIG);
+        generate(config, DEFAULT_TABLE_ITEMS, DEFAULT_COLUMN_ITEMS);
 
     }
 
@@ -38,6 +36,7 @@ public class DefaultMdGenerate implements MdGenerate {
         DbModel dbModel = DbQuery.queryModel(CustomDataSource.applyConfig(config));
         String markdownContent = parseMarkdownContent(tableItems, columnItems, dbModel.getTables());
         contentToFile(markdownContent);
+        System.out.println("the markdown output file is " + MarkdownConst.OUTPUT_FILE);
     }
 
     private void contentToFile(String content) throws IOException {
@@ -85,7 +84,7 @@ public class DefaultMdGenerate implements MdGenerate {
 
     @Override
     public void generate(DbSourceConfig config, List<MdColumnItem> tableColumnConfig)  {
-        generate(config, MdColumnConfig.DEFAULT_COLUMN_CONFIG);
+        generate(config, DEFAULT_COLUMN_ITEMS);
 
     }
 

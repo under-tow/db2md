@@ -1,6 +1,5 @@
-package cn.under2.db2md.config;
+package cn.under2.db2md.db;
 
-import cn.under2.db2md.model.DbSourceConfig;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import javax.sql.DataSource;

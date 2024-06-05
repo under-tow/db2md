@@ -1,4 +1,4 @@
-package cn.under2.db2md.model;
+package cn.under2.db2md.generate;
 
 
 import lombok.Getter;

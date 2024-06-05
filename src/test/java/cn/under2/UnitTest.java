@@ -1,9 +1,9 @@
 package cn.under2;
 
 import cn.under2.db2md.MarkdownUtil;
-import cn.under2.db2md.model.DbSourceConfig;
-import cn.under2.db2md.model.MdColumnConfig;
-import cn.under2.db2md.model.MdColumnItem;
+import cn.under2.db2md.constant.MarkdownConst;
+import cn.under2.db2md.db.DbSourceConfig;
+import cn.under2.db2md.generate.MdColumnItem;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -18,8 +18,8 @@ public class UnitTest {
                 .driverClassName("org.postgresql.Driver")
                 .username("postgres").build();
         MarkdownUtil.db2md(sourceConfig,
-                MdColumnConfig.DEFAULT_TABLE_CONFIG,
-                MdColumnConfig.DEFAULT_COLUMN_CONFIG);
+                MarkdownConst.DEFAULT_TABLE_ITEMS,
+                MarkdownConst.DEFAULT_COLUMN_ITEMS);
     }
 
     @Test
@@ -54,7 +54,7 @@ public class UnitTest {
                 MdColumnItem.of("IS_AUTOINCREMENT", "IS_AUTOINCREMENT"),
                 MdColumnItem.of("IS_GENERATEDCOLUMN", "IS_GENERATEDCOLUMN")
         );
-        MarkdownUtil.db2md(sourceConfig,MdColumnConfig.DEFAULT_TABLE_CONFIG,colItems);
+        MarkdownUtil.db2md(sourceConfig,MarkdownConst.DEFAULT_TABLE_ITEMS,colItems);
     }
 
 }

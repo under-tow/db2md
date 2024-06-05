@@ -1,6 +1,5 @@
-package cn.under2.db2md.model.md;
+package cn.under2.db2md.model;
 
-import cn.under2.db2md.config.MdColumn;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -13,15 +12,12 @@ public class ColumnModel {
 
     private String tableName;
 
-    @MdColumn(name = "名称", sort = 1)
     private String columnName;
 
     private String dataType;
 
-    @MdColumn(name = "数据类型", sort = 3)
     private String typeName;
 
-    @MdColumn(name = "列大小", sort = 4)
     private String columnSize;
 
     private String decimalDigits;
@@ -30,10 +26,8 @@ public class ColumnModel {
 
     private String nullable;
 
-    @MdColumn(name = "备注", sort = 7)
     private String remarks;
 
-    @MdColumn(name = "默认值", sort = 6)
     private String columnDef;
 
     private String sqlDataType;
@@ -44,7 +38,6 @@ public class ColumnModel {
 
     private String ordinalPosition;
 
-    @MdColumn(name = "允许空值", sort = 5)
     private String isNullable;
 
     private String scopeCatalog;
