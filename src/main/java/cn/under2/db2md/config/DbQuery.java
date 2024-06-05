@@ -1,8 +1,8 @@
-package cn.under2.config;
+package cn.under2.db2md.config;
 
-import cn.under2.model.md.ColumnModel;
-import cn.under2.model.DbModel;
-import cn.under2.model.md.TableModel;
+import cn.under2.db2md.model.md.ColumnModel;
+import cn.under2.db2md.model.DbModel;
+import cn.under2.db2md.model.md.TableModel;
 import cn.hutool.core.util.StrUtil;
 
 import javax.sql.DataSource;
@@ -22,7 +22,7 @@ public class DbQuery {
         return tables(dataSource.getConnection());
     }
 
-    public static void cols(Connection connection, TableModel tableModel, String table) throws SQLException, NoSuchFieldException, IllegalAccessException {
+    public static void cols(Connection connection, TableModel tableModel, String table) throws SQLException, IllegalAccessException {
         DatabaseMetaData metaData = connection.getMetaData();
         ResultSet resultSet = metaData.getColumns(connection.getCatalog(), connection.getSchema(), table, null);
 
@@ -44,7 +44,7 @@ public class DbQuery {
         while (resultSet.next()) {
             TableModel tableModel = new TableModel();
             for (Field field : TableModel.class.getDeclaredFields()) {
-                if(field.getType() == String.class){
+                if (field.getType() == String.class) {
                     setField(resultSet, tableModel, field);
                 }
             }

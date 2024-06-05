@@ -1,4 +1,4 @@
-package cn.under2.config;
+package cn.under2.db2md.config;
 
 import lombok.Data;
 

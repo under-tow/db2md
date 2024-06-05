@@ -1,6 +1,6 @@
-package cn.under2.model.md;
+package cn.under2.db2md.model.md;
 
-import cn.under2.config.MdColumn;
+import cn.under2.db2md.config.MdColumn;
 import lombok.Data;
 
 import java.util.ArrayList;

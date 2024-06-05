@@ -1,6 +1,4 @@
-package cn.under2.model;
-
-import lombok.Data;
+package cn.under2.db2md.model;
 
 import java.util.List;
 
@@ -16,12 +14,12 @@ public class MdColumnConfig {
      * | updated_by_id | uuid | 2147483647 | YES |  | 更新人ID |
      */
     public static final List<MdColumnItem> DEFAULT_COLUMN_CONFIG = List.of(
-            MdColumnItem.of("名称", "columnName"),
-            MdColumnItem.of("数据类型", "typeName"),
-            MdColumnItem.of("列大小", "columnSize"),
-            MdColumnItem.of("允许空值", "isNullable"),
-            MdColumnItem.of("默认值", "columnDef"),
-            MdColumnItem.of("备注", "remarks")
+            MdColumnItem.of("名称", "COLUMN_NAME"),
+            MdColumnItem.of("数据类型", "TYPE_NAME"),
+            MdColumnItem.of("列大小", "COLUMN_SIZE"),
+            MdColumnItem.of("允许空值", "IS_NULLABLE"),
+            MdColumnItem.of("默认值", "COLUMN_DEF"),
+            MdColumnItem.of("备注", "REMARKS")
     );
 
     /**
@@ -31,9 +29,9 @@ public class MdColumnConfig {
      * | public | demo |  |
      */
     public static final List<MdColumnItem> DEFAULT_TABLE_CONFIG = List.of(
-            MdColumnItem.of("模式", "tableSchem"),
-            MdColumnItem.of("表名", "tableName"),
-            MdColumnItem.of("说明", "remarks")
+            MdColumnItem.of("模式", "TABLE_SCHEM"),
+            MdColumnItem.of("表名", "TABLE_NAME"),
+            MdColumnItem.of("说明", "REMARKS")
 
     );
 //

@@ -1,4 +1,4 @@
-package cn.under2.model;
+package cn.under2.db2md.model;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -6,10 +6,10 @@ import lombok.Getter;
 @Getter
 @Builder
 public class DbSourceConfig {
+
     private final String jdbcUrl;
     private final String username;
     private final String password;
     private final String driverClassName;
-
 
 }
