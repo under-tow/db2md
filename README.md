@@ -1,23 +1,50 @@
-> 最近由于工作需要生成数据库文档，直接复制非常的麻烦。同时借鉴了一个其他的文档生成工具，于是开发了这样的一个数据库markdown文档生成工具。
-
 ### db2md
 
-数据库的markdown文档生成工具
+数据库表结构的Markdown文档生成工具
 
 工具地址：[https://github.com/under-tow/db2md](https://github.com/under-tow/db2md)
 
 ### 1 如何使用
-(重构中，准备以工具包的方式呈现)
-1. 下载代码
-2. 填写数据库信息:`src/main/resources/db.properties`
-3. 执行`src/main/java/cn.under2.db2md.MarkdownUtil.java`类的`main`方法。以默认配置导出到`md/datasource.md`文件
+1. 下载jar，并引入到项目中
+
+2. 在你的项目中执行
+
+   ```java
+   // 数据源配置
+   DbSourceConfig sourceConfig = DbSourceConfig.builder()
+                   .jdbcUrl("jdbc:postgresql://ip:5432/x")
+                   .password("123456")
+                   .driverClassName("org.postgresql.Driver")
+                   .username("postgres").build();
+   // 执行生成，默认生成在项目的根目录
+   MarkdownUtil.db2md(sourceConfig);
+   ```
+
+   
 
 ### 2 如何自定义
 
-> 本项目支持自定义导出的列和顺序。修改注解信息即可
+> 本项目支持自定义导出的列的属性和展示的名称，自定义`List<MdColumnItem> `即可
 
-- src/main/java/cn.under2.model/md/TableModel 表展示配置
-- src/main/java/cn.under2.model/md/ColumnModel 表字段展示配置
+```
+ DbSourceConfig sourceConfig = DbSourceConfig.builder()
+                .jdbcUrl("jdbc:postgresql://ip:5432/x")
+                .password("123456")
+                .driverClassName("org.postgresql.Driver")
+                .username("postgres").build();
+List<MdColumnItem> colItems = List.of(
+                MdColumnItem.of("TABLE_CAT", "TABLE_CAT"),
+                MdColumnItem.of("TABLE_SCHEM", "TABLE_SCHEM"),
+                MdColumnItem.of("TABLE_NAME", "TABLE_NAME"),
+                MdColumnItem.of("COLUMN_NAME", "COLUMN_NAME"),
+                MdColumnItem.of("DATA_TYPE", "DATA_TYPE"),
+                MdColumnItem.of("TYPE_NAME", "TYPE_NAME")
+                // ...
+        );
+ MarkdownUtil.db2md(sourceConfig,MdColumnConfig.DEFAULT_TABLE_CONFIG,colItems);
+```
+
+
 
 ### 3 导出样例
 

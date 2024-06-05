@@ -10,6 +10,17 @@ import java.util.List;
 
 public class UnitTest {
 
+    @Test
+    public void testSimpleGenerate() throws Exception {
+        DbSourceConfig sourceConfig = DbSourceConfig.builder()
+                .jdbcUrl("jdbc:postgresql://ip:5432/x")
+                .password("123456")
+                .driverClassName("org.postgresql.Driver")
+                .username("postgres").build();
+        MarkdownUtil.db2md(sourceConfig,
+                MdColumnConfig.DEFAULT_TABLE_CONFIG,
+                MdColumnConfig.DEFAULT_COLUMN_CONFIG);
+    }
 
     @Test
     public void testGenerate() throws Exception {
@@ -45,4 +56,5 @@ public class UnitTest {
         );
         MarkdownUtil.db2md(sourceConfig,MdColumnConfig.DEFAULT_TABLE_CONFIG,colItems);
     }
+
 }
