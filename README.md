@@ -32,15 +32,14 @@
                 .password("123456")
                 .driverClassName("org.postgresql.Driver")
                 .username("postgres").build();
-List<MdColumnItem> colItems = List.of(
-                MdColumnItem.of("TABLE_CAT", "TABLE_CAT"),
-                MdColumnItem.of("TABLE_SCHEM", "TABLE_SCHEM"),
-                MdColumnItem.of("TABLE_NAME", "TABLE_NAME"),
-                MdColumnItem.of("COLUMN_NAME", "COLUMN_NAME"),
-                MdColumnItem.of("DATA_TYPE", "DATA_TYPE"),
-                MdColumnItem.of("TYPE_NAME", "TYPE_NAME")
-                // ...
-        );
+ public static final List<MdColumnItem> DEFAULT_COLUMN_ITEMS = List.of(
+            MdColumnItem.of("名称", "COLUMN_NAME"),
+            MdColumnItem.of("数据类型", "TYPE_NAME"),
+            MdColumnItem.of("列大小", "COLUMN_SIZE"),
+            MdColumnItem.of("允许空值", "IS_NULLABLE"),
+            MdColumnItem.of("默认值", "COLUMN_DEF"),
+            MdColumnItem.of("备注", "REMARKS")
+    );
  MarkdownUtil.db2md(sourceConfig,MdColumnConfig.DEFAULT_TABLE_CONFIG,colItems);
 ```
 
