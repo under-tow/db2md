@@ -2,6 +2,10 @@
 
 A tool to generate Markdown documentation for database table structures.
 
+language
+- [English](README.md)
+- [简体中文](README-zh.md)
+
 ### 1 How to Use
 
 1. Download the jar file and include it in your project.
