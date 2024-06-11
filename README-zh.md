@@ -2,6 +2,9 @@
 
 数据库表结构的Markdown文档生成工具
 
+语言
+- [English](README.md)
+- [简体中文](README-zh.md)
 
 ### 1 如何使用
 
