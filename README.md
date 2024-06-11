@@ -1,75 +1,65 @@
 ### db2md
 
-数据库表结构的Markdown文档生成工具
+A tool to generate Markdown documentation for database table structures.
 
-工具地址：[https://github.com/under-tow/db2md](https://github.com/under-tow/db2md)
+### 1 How to Use
 
-### 1 如何使用
-1. 下载jar，并引入到项目中
+1. Download the jar file and include it in your project.
 
-2. 在你的项目中执行
+2. Execute the following in your project:
 
    ```java
-   // 数据源配置
+   // Data source configuration
    DbSourceConfig sourceConfig = DbSourceConfig.builder()
                    .jdbcUrl("jdbc:postgresql://ip:5432/x")
                    .password("123456")
                    .driverClassName("org.postgresql.Driver")
                    .username("postgres").build();
-   // 执行生成，默认生成在项目的根目录
+   // Execute the generation, default output is in the root directory of the project
    MarkdownUtil.db2md(sourceConfig);
    ```
 
-   
+### 2 How to Customize
 
-### 2 如何自定义
+> This project supports customizing the properties and display names of the exported columns. Simply customize `List<MdColumnItem>`.
 
-> 本项目支持自定义导出的列的属性和展示的名称，自定义`List<MdColumnItem> `即可
-
-```
+```java
  DbSourceConfig sourceConfig = DbSourceConfig.builder()
                 .jdbcUrl("jdbc:postgresql://ip:5432/x")
                 .password("123456")
                 .driverClassName("org.postgresql.Driver")
                 .username("postgres").build();
  public static final List<MdColumnItem> DEFAULT_COLUMN_ITEMS = List.of(
-            MdColumnItem.of("名称", "COLUMN_NAME"),
-            MdColumnItem.of("数据类型", "TYPE_NAME"),
-            MdColumnItem.of("列大小", "COLUMN_SIZE"),
-            MdColumnItem.of("允许空值", "IS_NULLABLE"),
-            MdColumnItem.of("默认值", "COLUMN_DEF"),
-            MdColumnItem.of("备注", "REMARKS")
+            MdColumnItem.of("Name", "COLUMN_NAME"),
+            MdColumnItem.of("Data Type", "TYPE_NAME"),
+            MdColumnItem.of("Column Size", "COLUMN_SIZE"),
+            MdColumnItem.of("Nullable", "IS_NULLABLE"),
+            MdColumnItem.of("Default Value", "COLUMN_DEF"),
+            MdColumnItem.of("Remarks", "REMARKS")
     );
- MarkdownUtil.db2md(sourceConfig,MdColumnConfig.DEFAULT_TABLE_CONFIG,colItems);
+ MarkdownUtil.db2md(sourceConfig, MdColumnConfig.DEFAULT_TABLE_CONFIG, colItems);
 ```
 
+### 3 Export Example
 
-
-### 3 导出样例
-
-
-
-| 模式   | 表名  | 说明    |
-| ------ | ----- | ------- |
-| public | demo1 | 样例表1 |
-| public | demo2 | 样例表2 |
+| Schema | Table | Description |
+| ------ | ----- | ----------- |
+| public | demo1 | Sample Table 1 |
+| public | demo2 | Sample Table 2 |
 
 #### demo1
 
-| 名称         | 数据类型 | 列大小     | 允许空值 | 默认值 | 备注     |
-| ------------ | -------- | ---------- | -------- | ------ | -------- |
-| id           | uuid     | 2147483647 | NO       |        | 主键     |
-| name         | varchar  | 255        | YES      |        | 名称     |
-| created_date | date     | 13         | YES      |        | 创建日期 |
-| deleted      | bool     | 1          | YES      | false  | 是否删除 |
+| Name         | Data Type | Column Size | Nullable | Default Value | Remarks     |
+| ------------ | --------- | ----------- | -------- | ------------- | ----------- |
+| id           | uuid      | 2147483647  | NO       |               | Primary Key |
+| name         | varchar   | 255         | YES      |               | Name        |
+| created_date | date      | 13          | YES      |               | Creation Date |
+| deleted      | bool      | 1           | YES      | false         | Deleted Flag |
 
 #### demo2
 
-| 名称         | 数据类型 | 列大小     | 允许空值 | 默认值 | 备注     |
-| ------------ | -------- | ---------- | -------- | ------ | -------- |
-| id           | uuid     | 2147483647 | NO       |        | 主键     |
-| version      | int8     | 19         | YES      |        | 版本     |
-| updated_date | date     | 13         | YES      |        | 更新日期 |
-
-
-
+| Name         | Data Type | Column Size | Nullable | Default Value | Remarks     |
+| ------------ | --------- | ----------- | -------- | ------------- | ----------- |
+| id           | uuid      | 2147483647  | NO       |               | Primary Key |
+| version      | int8      | 19          | YES      |               | Version     |
+| updated_date | date      | 13          | YES      |               | Update Date |
